@@ -8,6 +8,7 @@
   </head>
   <body>
     <div class="container">
+      <div id="overlay-shadow" class="overlay-shadow"></div>
       <div class="screen active" id="start-screen">
         <h1>Quiz Time</h1>
         <p>Test your knowledge with these questions</p>
@@ -27,6 +28,9 @@
         <div class="answers-container" id="answers-container">
           <!-- Answer button will be added through js -->
         </div>
+        <div id="timer-container">
+          Time Left: <span id="timer-seconds">10</span>s
+        </div>
 
         <div class="progress-bar">
           <div class="progress" id="progress"></div>
@@ -42,8 +46,9 @@
           <div id="result-message">Good Job</div>
         </div>
         <button id="restart-btn">Restart Quiz</button>
+        <button id="home-btn" class="btn-outline">Return to Home</button>
       </div>
     </div>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>

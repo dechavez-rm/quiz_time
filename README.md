@@ -1,71 +1,66 @@
-# 🧠 Interactive JS Quiz Engine
+# 🧠 Interactive JS Quiz Engine (v2.0)
 
-A lightweight, dynamic quiz application built with **Vanilla JavaScript**, **HTML5**, and **CSS3**.  
-This project features randomized question selection, real-time progress tracking, and an automated scoring system.
+A lightweight, high-performance quiz application built with Modular Vanilla JavaScript, HTML5, and CSS3. This version features advanced randomization algorithms, a pressurized timer system, and a modern "Floating Window" UI.
 
 ---
 
-## 🚀 Features
+## 🚀 New & Enhanced Features
 
-### 🎲 Randomized Questions
-Every round pulls a fresh set of **5 questions** from a larger pool, ensuring a unique experience every time.
+### 🎲 Double-Layer Randomization
 
-### 🖥️ Dynamic UI
-Uses **DOM manipulation** to inject questions and answers without page reloads.
+Utilizes the Fisher-Yates (Knuth) Shuffle algorithm to randomize not only the order of the questions but also the order of the answers within each question, preventing pattern memorization.
 
-### 📊 Progress Bar
-Visual feedback showing how far the user is through the current round.
+### ⏳ Pressure Timer
 
-### ⚡ Instant Feedback
-Highlights the correct and incorrect answers immediately after a selection is made.
+A 10-second countdown per question. If the timer hits zero, the correct answer is revealed, and the quiz automatically advances, adding an extra layer of challenge.
 
-### 🧮 Smart Scoring
-Categorized result messages based on the final percentage achieved.
+### 🪟 Glassmorphism UI
+
+The results screen is designed as a Floating Modal with a backdrop-blur effect (Glassmorphism), creating a modern, high-end feel without leaving the game context.
+
+### 📂 Modular Architecture
+
+Separates data from logic using ES6 Modules, making it easy to manage thousands of questions in a dedicated file without cluttering the core engine.
 
 ---
 
 ## 🛠️ Technical Overview
 
-The application logic is broken down into four primary stages:
+The application follows a synchronized lifecycle:
 
-### 1️⃣ Initialization
-Resets variables and shuffles the `quizQuestions` array.
-
-### 2️⃣ Display
-Renders the current question and maps answer objects to dynamic buttons.
-
-### 3️⃣ Validation
-Checks the `dataset.correct` attribute, updates the score, and provides visual CSS feedback.
-
-### 4️⃣ Completion
-Calculates the final percentage and displays a custom message based on performance.
+1. **Shuffling & Slicing** — The `shuffleArray()` helper creates a unique permutation of the master bank, and `.slice()` selects exactly 5 for the round.
+2. **Timer & State Management** — The `startTimer()` and `clearInterval()` functions are synchronized with user input to ensure the clock resets perfectly between rounds.
+3. **Background Dimming** — A dedicated `overlay-shadow` layer blurs and darkens the quiz background when the results are displayed, focusing the user's attention on their performance.
 
 ---
 
 ## 📂 File Structure
 
 ```plaintext
-├── index.html   # The structure (Start, Quiz, and Result screens)
-├── style.css    # Layout and feedback animations (.correct, .incorrect)
-└── script.js    # Core quiz logic and state management
+├── index.html     # The structure with a dedicated Modal Overlay layer
+├── styles.css     # Glassmorphism, timer animations, and responsive layouts
+├── script.js      # Core engine (Timer, Shuffle, and State management)
+└── question.js    # Data module containing the master question bank
 ```
 
+---
+
 ## ⚙️ How to Run
-### 1️⃣ Clone this repository
+
+**1. Clone this repository**
+
+```bash
 git clone https://github.com/dechavez-rm/quiz_time.git
+```
 
-### 2️⃣ Open the project
+**2. Run with a Local Server**
 
-Open index.html in your favorite browser.
+Because this project uses **ES6 Modules (`type="module"`)**, you must run it through a local server (like VS Code's **Live Server** extension) to avoid CORS policy errors when loading `question.js`.
 
-### 3️⃣ (Optional) Customize
+---
 
-Add your own questions to the quizQuestions array in script.js.
+## 📝 Roadmap
 
-## 📝 Future Improvements
-
-⏳ Add a countdown timer for each question
-
-🏆 Implement a high-score leaderboard using localStorage
-
-🗂️ Support for multiple quiz categories
+- ✅ **Completed:** Timer system, Answer shuffling, Glassmorphism Modal.
+- 🏆 **Next:** High-score leaderboard using `localStorage`.
+- 🗂️ **Next:** Support for multiple quiz categories (Science, History, Tech).

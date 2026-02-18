@@ -54,7 +54,7 @@ body {
 .quiz-header {
   color: #333;
   font-size: 1.5rem;
-  margin-bottom: 1 rem;
+  margin-bottom: 1rem;
   line-height: 1.4;
 }
 
@@ -80,7 +80,7 @@ body {
   padding: 1rem;
   cursor: pointer;
   text-align: left;
-  transition: all 0.3 ease;
+  transition: all 0.3s ease;
 }
 
 .answer-btn:hover {
@@ -149,11 +149,43 @@ button {
   padding: 15px 30px;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.3 ease;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
   background-color: #744dff;
+}
+
+#timer-container {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #4628b3;
+}
+
+/* When the timer hits 0 or time is low, we can toggle this via JS */
+.timer-low {
+  color: #dc3545 !important;
+  animation: pulse 0.5s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.answer-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* Make the correct answer pop more when revealed */
+.answer-btn.correct {
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
 }
 
 /* RESPONSIVE DESIGN */
@@ -170,11 +202,51 @@ button:hover {
   }
 
   #question-text {
-    font-size: 1.3 rem;
+    font-size: 1.3rem;
   }
 
   button {
     padding: 12px 25px;
     font-size: 1rem;
   }
+}
+
+/* Update your Result Screen styles */
+#result-screen {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9); /* Starts slightly smaller */
+  width: 90%;
+  max-width: 450px;
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent */
+  backdrop-filter: blur(10px); /* The Glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  transition: all 0.3s ease;
+  padding: 3rem 2rem;
+}
+
+#result-screen.active {
+  display: block;
+  transform: translate(-50%, -50%) scale(1); /* Pops into full size */
+}
+
+/* Optional: Add a dark overlay behind the floating window */
+.overlay-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  z-index: 99;
+}
+
+.overlay-shadow.active {
+  display: block;
 }
